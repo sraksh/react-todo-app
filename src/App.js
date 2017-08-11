@@ -7,11 +7,15 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      todo: [],
-      isCompleted: null
+      todo: []
     }
   }
-  addTodo(term) {
+  addTodo=(term) => {
+    this.setState({
+      todo: [...this.state.todo, {term, isCompleted: false}],
+    })
+  }
+  deleteTodo=(term) => {
     var todo = this.state.todo.slice(0);
     todo.push(term);
     this.setState({
@@ -19,13 +23,14 @@ class App extends Component{
       isCompleted: false
     })
   }
+
   render() {
     return (
-        <div>
-        <TodosListHeader />
-        <CreateTodo addTodo={this.addTodo.bind(this)} />
-        <TodosList todoListItems={this.state.todo} />
-        </div>
+      <div>
+      <TodosListHeader />
+      <CreateTodo addTodo={this.addTodo} />
+      <TodosList todoListItems={this.state.todo} deleteTodo={this.deleteTodo} />
+      </div>
     )
   }
 }

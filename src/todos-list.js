@@ -2,11 +2,16 @@ import React, { Component }  from 'react';
 import TodosListItem from './todos-list-item';
 
 class TodosList extends Component {
-    
-    render() {
-    console.log(this.props.todoListItems)
+  render() {
+    var todoItems = this.props.todoListItems.map((item,index) => {
+        return(
+            <TodosListItem todoListItems = {item} key = {index} />
+        );
+    });
     return (
-        <TodosListItem todoListItems={this.props.todoListItems} />
+        <ul>
+          {todoItems}
+        </ul>
     );
   }
 }

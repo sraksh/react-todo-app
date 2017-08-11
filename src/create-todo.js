@@ -6,20 +6,24 @@ class CreateTodo extends Component{
     this.state = {
       term : ''
     };
-    this.onAddSubmit = this.onAddSubmit.bind(this);
   }
-  onAddSubmit(event) {
+  onTermChange=(event)=> {
+    this.setState({
+      term: event.target.value
+    })
+  }
+  onAddSubmit=(event) =>{
     event.preventDefault();
     var term = ReactDOM.findDOMNode(this.refs.jsTodoValue).value;
-    this.setState({
-      term
-    });
     this.props.addTodo(term);
+    this.setState({
+      term: ''
+    });
   }
   render() {
     return (
       <form onSubmit={this.onAddSubmit} >
-        <input type="text" placeholder="Add todo" ref="jsTodoValue"  />
+        <input type="text" placeholder="Add todo" ref="jsTodoValue" value={this.state.term} onChange={this.onTermChange} />
         <input type="submit" value="Add +" />
       </form>
     );
