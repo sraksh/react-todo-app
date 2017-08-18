@@ -5,7 +5,13 @@ class TodosList extends Component {
   render() {
     var todoItems = this.props.todoListItems.map((item,index) => {
         return(
-            <TodosListItem todoListItems = {item} key = {index} />
+            <TodosListItem
+            todoListItems={item}
+            key={index}
+            id={index}
+            editCurrentTodo={this.props.editTodo}
+            deleteCurrentTodo={this.props.deleteTodo}
+            markCurrentTodo={this.props.markTodo}/>
         );
     });
     return (
