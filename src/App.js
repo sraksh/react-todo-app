@@ -15,13 +15,29 @@ class App extends Component{
       todo: [...this.state.todo, {term, isCompleted: false}],
     })
   }
-  deleteTodo=(term) => {
-    var todo = this.state.todo.slice(0);
-    todo.push(term);
+  deleteTodo=(id) => {
+    var todo = this.state.todo.filter((item,index) => {
+      return index!==id;
+    });
     this.setState({
-      todo,
-      isCompleted: false
+      todo
     })
+  }
+  markTodo=(id) => {
+    var todo = this.state.todo.map((item,index) => {
+      if(index===id){
+        item.isCompleted= !item.isCompleted;
+      }
+      return item;
+    });
+    this.setState({
+      todo
+    })
+  }
+  editTodo=(term,id) => {
+  //   this.setState({
+  //     todo: [...this.state.todo, {term, isCompleted: false}],
+  //   })
   }
 
   render() {
@@ -29,7 +45,12 @@ class App extends Component{
       <div>
       <TodosListHeader />
       <CreateTodo addTodo={this.addTodo} />
-      <TodosList todoListItems={this.state.todo} deleteTodo={this.deleteTodo} />
+      <TodosList
+      todoListItems={this.state.todo}
+      deleteTodo={this.deleteTodo}
+      markTodo={this.markTodo}
+      editTodo={this.editTodo}
+      />
       </div>
     )
   }
