@@ -9,7 +9,6 @@ class TodosList extends Component {
             todoListItems={item}
             key={index}
             id={index}
-            editCurrentTodo={this.props.editTodo}
             deleteCurrentTodo={this.props.deleteTodo}
             markCurrentTodo={this.props.markTodo}/>
         );
