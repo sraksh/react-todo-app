@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import CreateTodo from './create-todo';
 import TodosListHeader from './todos-list-header';
 import TodosList from './todos-list';
+import TodosFooter from './todos-footer';
 
 class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      todo: []
+      todo: [],
+      nowShowing: 'All'
     }
   }
   addTodo=(term) => {
@@ -34,23 +36,42 @@ class App extends Component{
       todo
     })
   }
-  editTodo=(term,id) => {
-  //   this.setState({
-  //     todo: [...this.state.todo, {term, isCompleted: false}],
-  //   })
+  filterTodo=(str) => {
+    this.setState({
+        nowShowing: str
+     })
   }
-
+  renderTodoItems=() => {
+    var str = this.state.nowShowing;
+    if(str === 'Active') {
+        return this.state.todo.slice(0).filter((item) => {
+          if(item.isCompleted===false){
+            return item;
+          }
+        });
+      }
+      else if(str === 'Completed') {
+        return this.state.todo.slice(0).filter((item) => {
+            if(item.isCompleted===true){
+              return item;
+            }
+          });
+      }
+      else {
+        return this.state.todo;
+      }
+  }
   render() {
     return (
       <div>
       <TodosListHeader />
       <CreateTodo addTodo={this.addTodo} />
       <TodosList
-      todoListItems={this.state.todo}
-      deleteTodo={this.deleteTodo}
-      markTodo={this.markTodo}
-      editTodo={this.editTodo}
+        todoListItems={this.renderTodoItems()}
+        deleteTodo={this.deleteTodo}
+        markTodo={this.markTodo}
       />
+      <TodosFooter filterTodo={this.filterTodo} highlightTodo={this.state.nowShowing} />
       </div>
     )
   }
