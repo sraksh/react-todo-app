@@ -1,0 +1,13 @@
+.container {
+    margin-top: 20px;
+}
+.list-group {
+    width: 100%;
+}
+.add-todo {
+    margin-bottom: 30px;
+}
+li.list-group-item:after{
+    content: "";
+    line-height: 35px;
+}
