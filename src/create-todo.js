@@ -22,9 +22,11 @@ class CreateTodo extends Component{
   }
   render() {
     return (
-      <form onSubmit={this.onAddSubmit} >
-        <input type="text" placeholder="Add todo" ref="jsTodoValue" value={this.state.term} onChange={this.onTermChange} />
-        <input type="submit" value="Add +" />
+      <form className="input-group add-todo" onSubmit={this.onAddSubmit} >
+        <input className="form-control input-lg" type="text" placeholder="Add todo" ref="jsTodoValue" value={this.state.term} onChange={this.onTermChange} />
+        <span className="input-group-btn">
+         <input type="submit" className="btn btn-primary btn-lg" value="Add +" />
+        </span>
       </form>
     );
   }

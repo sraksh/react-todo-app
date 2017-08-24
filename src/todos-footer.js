@@ -5,11 +5,11 @@ class TodosFooter extends Component {
   render() {
     return (
       <footer>
-        <ul>
-          <span onClick={()=> this.props.filterTodo('All')}> All </span>
-          <span onClick={()=> this.props.filterTodo('Active')}> Active </span>
-          <span onClick={()=> this.props.filterTodo('Completed')}> Completed </span>
-        </ul>
+          <ul className="row btn-group">
+          <button type="button" className="btn btn-secondary" onClick={()=> this.props.filterTodo('All')}> All </button>
+          <button type="button" className="btn btn-secondary" onClick={()=> this.props.filterTodo('Active')}> Active </button>
+          <button type="button" className="btn btn-secondary" onClick={()=> this.props.filterTodo('Completed')}> Completed </button>
+         </ul>
       </footer>
     );
   }
