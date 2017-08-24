@@ -14,20 +14,25 @@ class App extends Component{
   }
   addTodo=(term) => {
     this.setState({
-      todo: [...this.state.todo, {term, isCompleted: false}],
+      todo: [...this.state.todo, {term, isCompleted: false, id: Math.floor(Math.random() * 2000)}],
+    })
+  }
+  saveEditTodo=(id, val) =>{
+    this.setState({
+      todo : this.state.todo.map((item) => {if(id===item.id){item.term = val} return item})
     })
   }
   deleteTodo=(id) => {
-    var todo = this.state.todo.filter((item,index) => {
-      return index!==id;
+    var todo = this.state.todo.filter((item) => {
+      return item.id!==id;
     });
     this.setState({
       todo
     })
   }
   markTodo=(id) => {
-    var todo = this.state.todo.map((item,index) => {
-      if(index===id){
+    var todo = this.state.todo.map((item) => {
+      if(item.id===id){
         item.isCompleted= !item.isCompleted;
       }
       return item;
@@ -63,13 +68,15 @@ class App extends Component{
   }
   render() {
     return (
-      <div>
+      <div className="row">
       <TodosListHeader />
       <CreateTodo addTodo={this.addTodo} />
       <TodosList
         todoListItems={this.renderTodoItems()}
         deleteTodo={this.deleteTodo}
         markTodo={this.markTodo}
+        editTodo={this.editTodo}
+        saveEditTodo={this.saveEditTodo}
       />
       <TodosFooter filterTodo={this.filterTodo} highlightTodo={this.state.nowShowing} />
       </div>

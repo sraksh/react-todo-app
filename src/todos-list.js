@@ -3,20 +3,22 @@ import TodosListItem from './todos-list-item';
 
 class TodosList extends Component {
   render() {
-    var todoItems = this.props.todoListItems.map((item,index) => {
+    var todoItems = this.props.todoListItems.map((item) => {
         return(
             <TodosListItem
             todoListItems={item}
-            key={index}
-            id={index}
+            key={item.id}
+            id={item.id}
             deleteCurrentTodo={this.props.deleteTodo}
+            editTodo={this.props.editTodo}
+            saveEditTodo={this.props.saveEditTodo}
             markCurrentTodo={this.props.markTodo}/>
         );
     });
     return (
-        <ul>
-          {todoItems}
-        </ul>
+          <ul className="list-group">
+            {todoItems}
+          </ul>
     );
   }
 }
