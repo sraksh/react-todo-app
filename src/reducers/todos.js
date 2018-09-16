@@ -1,8 +1,6 @@
-let initialState = {
-  todo: []
-};
+let initialState = [];
 
-function todos(state =initialState.todo, action) {
+function todos(state = initialState, action) {
   switch (action.type) {
     case 'ADD_TODO':
       return [
@@ -15,10 +13,7 @@ function todos(state =initialState.todo, action) {
       ]
 
     case 'DELETE_TODO':
-    debugger;
-    return state.filter(item => {
-      item.id != action.id;
-    })
+    return state.filter(item => item.id !== action.id);
 
     default:
     return state;
