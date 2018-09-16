@@ -8,6 +8,7 @@ class CreateTodo extends Component{
     };
   }
   onTermChange=(event)=> {
+    this.props.actions.enteredTerm(event.target.value);
     this.setState({
       term: event.target.value
     })
@@ -16,9 +17,10 @@ class CreateTodo extends Component{
     event.preventDefault();
     var term = ReactDOM.findDOMNode(this.refs.jsTodoValue).value;
     this.props.addTodo(term);
-    this.setState({
-      term: ''
-    });
+    // this.props.actions.addTodo(term);
+    // this.setState({
+    //   term: ''
+    // });
   }
   render() {
     return (
