@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import { routerReducer } from 'react-router-redux';
 
-import addDelete from './addDelete';
+import todos from './todos';
 import filter from './filter';
 
 let rootReducer = combineReducers({
   filter,
-  addDelete,
+  todos,
   routing: routerReducer
 });
 

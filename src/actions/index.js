@@ -1,5 +1,5 @@
 
-export const addTodo = (term, id) => ({
+export const addTodo = (term) => ({
   type: 'ADD_TODO',
   term,
   id: Math.floor(Math.random() * 2000)

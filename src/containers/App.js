@@ -17,23 +17,22 @@ class App extends Component{
   }
   addTodo=(term) => {
     this.props.actions.addTodo(term);
-    // this.setState({
-    //   todo: [...this.state.todo, {term, isCompleted: false, id: Math.floor(Math.random() * 2000)}],
-    // })
   }
+
   // saveEditTodo=(id, val) =>{
   //   this.setState({
   //     todo : this.state.todo.map((item) => {if(id===item.id){item.term = val} return item})
   //   })
   // }
-  // deleteTodo=(id) => {
-  //   var todo = this.state.todo.filter((item) => {
-  //     return item.id!==id;
-  //   });
-  //   this.setState({
-  //     todo
-  //   })
-  // }
+  deleteTodo=(id) => {
+    // var todo = this.state.todo.filter((item) => {
+    //   return item.id!==id;
+    // });
+    this.props.actions.deleteTodo(id);
+    // this.setState({
+    //   todo
+    // })
+  }
   // markTodo=(id) => {
   //   var todo = this.state.todo.map((item) => {
   //     if(item.id===id){
@@ -71,15 +70,14 @@ class App extends Component{
   //     }
   // }
   render() {
-    // debugger;
     return (
       <div className="row">
       <TodosListHeader />
       <CreateTodo addTodo={this.addTodo} />
       <TodosList
         // todoListItems={this.renderTodoItems()}
-        todoListItems={this.props.addTodo}
-        // deleteTodo={this.deleteTodo}
+        todoListItems={this.props.todos}
+        deleteTodo={this.deleteTodo}
         // markTodo={this.markTodo}
         // editTodo={this.editTodo}
         // saveEditTodo={this.saveEditTodo}
@@ -92,7 +90,7 @@ class App extends Component{
 
 
 const mapStateToProps = state => ({
-  addTodo: state.addTodo,
+  todos: state.todos,
 });
 
 const mapDispatchToProps = dispatch => ({

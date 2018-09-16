@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import rootReducer from '../reducers';
 // create an object for the default data
 const defaultState = {
-    todo: []
+    // todo: []
 //   feed
   // filter: 'all'
 };
